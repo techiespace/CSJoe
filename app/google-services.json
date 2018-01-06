@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "823278925656",
+    "firebase_url": "https://csjoe-20395.firebaseio.com",
+    "project_id": "csjoe-20395",
+    "storage_bucket": "csjoe-20395.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:823278925656:android:65b73485a07dc28f",
+        "android_client_info": {
+          "package_name": "com.techiespace.projects.csjoe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "823278925656-qe85j78melgs8h5oakgs7j40b6bkrv5v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZ2wMKAw4wh4r8DGwMZraiVyt1Gp3tYDw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
