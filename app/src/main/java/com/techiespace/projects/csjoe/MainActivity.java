@@ -1,7 +1,15 @@
 package com.techiespace.projects.csjoe;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import android.support.design.widget.Snackbar;
@@ -14,107 +22,87 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;  //https://github.com/firebase/FirebaseUI-Android/tree/master/firestore
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-
-
 public class MainActivity extends AppCompatActivity {
-    /*private static final String TAG = "MainActivity";
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        FirebaseFirestore db = FirebaseFirestore.getInstance();*/
-// Create a new user with a first and last name
-/*        Map<String, Object> user = new HashMap<>();
+    //@BindView(R.id.progress_bar)
+    //ProgressBar progressBar;
 
-        user.put("first", "Ada");
-        user.put("last", "Lovelace");
-        user.put("born", 1815);
-
-// Add a new document with a generated ID
-        db.collection("users")
-                .add(user)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        //Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        //Log.w(TAG, "Error adding document", e);
-                    }
-                });
-*/
-
-        //read data
-     /*   db.collection("users")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (DocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG, document.getId() + " => " + document.getData());
-                            }
-                        } else {
-                            Log.w(TAG, "Error getting documents.", task.getException());
-                        }
-                    }
-                });
-*/
-   /* }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-    }*/
-
-
-
-
-
-
-
-    @BindView(R.id.progress_bar)
-    ProgressBar progressBar;
-
-    @BindView(R.id.friend_list)
-    RecyclerView friendList;
+    @BindView(R.id.listRecyclerView)
+    RecyclerView listRecyclerView;
 
     private FirebaseFirestore db;
     private FirestoreRecyclerAdapter adapter;
+    private FirestoreRecyclerAdapter uadapter;
+    private FirestoreRecyclerAdapter newadapter;
     LinearLayoutManager linearLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
-        init();
-        getFriendList();
-    }
+        //init();
+        ListFragment ufrag = new ListFragment();
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.placeholder,ufrag);
+        fragmentTransaction.commit();
+        //ButterKnife.bind(this);   //causes error
 
+        //getUniversities();
+    }
+    /*
     private void init(){
         linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
-        friendList.setLayoutManager(linearLayoutManager);
+        listRecyclerView.setLayoutManager(linearLayoutManager);
         db = FirebaseFirestore.getInstance();
     }
 
+    private void getUniversities(){
+        Query quniversities = db.collection("university");
+        FirestoreRecyclerOptions<University> response = new FirestoreRecyclerOptions.Builder<University>()
+                .setQuery(quniversities, University.class)
+                .build();
+        uadapter = new FirestoreRecyclerAdapter<University, UniversityHolder>(response) {
+            @Override
+            public UniversityHolder onCreateViewHolder(ViewGroup group, int viewType) {
+                View view = LayoutInflater.from(group.getContext())
+                        .inflate(R.layout.list_item, group, false);
+                return new UniversityHolder(view);
+            }
+
+            @Override
+            protected void onBindViewHolder(UniversityHolder holder, int position, University model) {
+                progressBar.setVisibility(View.GONE);
+                holder.textName.setText(model.getUniName());
+                Toast.makeText(MainActivity.this, model.getUniName()+"1", Toast.LENGTH_SHORT).show();
+                Query qstream = db.collection("university").whereEqualTo(model.getUniName(),true);
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        uadapter.stopListening();
+                        newadapter.startListening();
+                        updateList(model, response);
+                    }
+                });
+            }
+        };
+
+
+*//*
     private void getFriendList(){
         Query query = db.collection("friends");
 
@@ -152,20 +140,82 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("error", e.getMessage());
             }
         };
+*//*
+        //uadapter.notifyDataSetChanged();
+        friendList.setAdapter(uadapter);
+    }
+    private void updateList(University model, FirestoreRecyclerOptions<University> response){
+        Snackbar.make(friendList, model.getUniName(), Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();
 
-        adapter.notifyDataSetChanged();
-        friendList.setAdapter(adapter);
+        Query qstream = db.collection("university/jXrYSu115nHLSS6dQ0vP/stream");
+        qstream.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    if(task.getResult() == null){
+                        Toast.makeText(MainActivity.this, "Query chukichi aahe watta", Toast.LENGTH_SHORT).show();
+                    }
+                    for (DocumentSnapshot document : task.getResult()) {
+                        Log.d("123", document.getId() + " => " + document.getData());
+                    }
+                } else {
+                    Log.d("456", "Error getting documents: ", task.getException());
+                }
+            }
+        });
+        FirestoreRecyclerOptions<University> stream_response = new FirestoreRecyclerOptions.Builder<University>()
+                .setQuery(qstream, University.class)
+                .build();
+        newadapter = new FirestoreRecyclerAdapter<University, UniversityHolder>(stream_response) {
+            @Override
+            public UniversityHolder onCreateViewHolder(ViewGroup group, int viewType) {
+                Toast.makeText(MainActivity.this, "Cretating view holder", Toast.LENGTH_SHORT).show();
+                View view = LayoutInflater.from(group.getContext())
+                        .inflate(R.layout.list_item, group, false);
+
+                return new UniversityHolder(view);
+            }
+
+            @Override
+            protected void onBindViewHolder(UniversityHolder holder, int position, University model) {
+                //progressBar.setVisibility(View.GONE);
+                holder.textName.setText(model.getUniName());
+                Toast.makeText(MainActivity.this, model.getUniName(), Toast.LENGTH_SHORT).show();
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        //updateList(model, response);
+                        Toast.makeText(MainActivity.this, "This is the inner one", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        };
+        friendList.setAdapter(newadapter);
+        friendList.invalidate();
+        //uadapter.notifyDataSetChanged();
+    }
+    public class UniversityHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.name)
+        TextView textName;
+        @BindView(R.id.image)
+        CircleImageView imageView;
+
+        public UniversityHolder(View itemView) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
+        }
     }
 
     public class FriendsHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.name)
         TextView textName;
-        @BindView(R.id.image)
+        *//*@BindView(R.id.image)
         CircleImageView imageView;
         @BindView(R.id.title)
         TextView textTitle;
         @BindView(R.id.company)
-        TextView textCompany;
+        TextView textCompany;*//*
 
         public FriendsHolder(View itemView) {
             super(itemView);
@@ -176,13 +226,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        adapter.startListening();   //I think we need to put this inside a fetch button onclick to prevent realtime fetches
+        uadapter.startListening();   //I think we need to put this inside a fetch button onclick to prevent realtime fetches
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        adapter.stopListening();
-    }
+        uadapter.stopListening();
+    }*/
 
 }
