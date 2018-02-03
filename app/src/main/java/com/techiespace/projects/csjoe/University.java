@@ -5,26 +5,31 @@ import com.google.firebase.firestore.IgnoreExtraProperties;
 @IgnoreExtraProperties
 
 public class University {
+
+
     private String uniname;
     private String stream_count;
 
     public University(){}   //required for firebase
-    public University(String name, String uniStreamCount){
-        uniname = name;
-        stream_count = uniStreamCount;
-
+    public University(String uniname, String stream_count){
+        this.uniname = uniname;
+        this.stream_count = stream_count;
     }
 
-    public String getUniName() {
+
+    public void setUniname(String uniname) {
+        this.uniname = uniname;
+    }
+
+    public void setStream_count(String stream_count) {
+        this.stream_count = stream_count;
+    }
+
+    public String getUniname() {
         return uniname;
     }
 
-    public String getStreamCount(){
+    public String getStream_count() {
         return stream_count;
     }
-
-    /*public String getUniDesc() {
-        return uniDesc;
-    }*/
-
-} 
+}
