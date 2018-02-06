@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -21,29 +20,17 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class StreamFragment extends Fragment{
-    private FirestoreRecyclerAdapter sadapter;
+public class StreamFragment extends Fragment {
     Query quniversities;
     FirestoreRecyclerOptions<Stream> response;
     String uni_name;
+    private FirestoreRecyclerAdapter sadapter;
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.name)
-        TextView textName;
-        @BindView(R.id.image)
-        CircleImageView imageView;
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-            ButterKnife.bind(this, itemView);
-        }
-    }
-
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         uni_name = getArguments().getString("University");
         //Toast.makeText(getActivity(), ""+uni_name, Toast.LENGTH_SHORT).show();
         quniversities = FirebaseFirestore.getInstance()
-                .collection("university/"+uni_name+"/stream");
+                .collection("university/" + uni_name + "/stream");
         response = new FirestoreRecyclerOptions.Builder<Stream>()
                 .setQuery(quniversities, Stream.class)
                 .build();
@@ -62,12 +49,12 @@ public class StreamFragment extends Fragment{
                 holder.textName.setText(model.getStream_name());
                 holder.itemView.setOnClickListener(view -> {
                     Bundle cbundle = new Bundle();
-                    cbundle.putString("Course",snapshot.getId());
-                    cbundle.putString("University",uni_name);
+                    cbundle.putString("Course", snapshot.getId());
+                    cbundle.putString("University", uni_name);
                     Fragment sFragment = new CourseFragment();
                     sFragment.setArguments(cbundle);
                     FragmentManager fragmentManager = getFragmentManager();
-                    fragmentManager.beginTransaction().replace(R.id.placeholder,sFragment).addToBackStack(null).commit();
+                    fragmentManager.beginTransaction().replace(R.id.placeholder, sFragment).addToBackStack(null).commit();
                 });
             }
         };
@@ -79,14 +66,28 @@ public class StreamFragment extends Fragment{
         recyclerView.setAdapter(sadapter);
         return view;
     }
+
     @Override
     public void onStart() {
         super.onStart();
         sadapter.startListening();
     }
+
     @Override
     public void onStop() {
         super.onStop();
         sadapter.stopListening();
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.name)
+        TextView textName;
+        @BindView(R.id.image)
+        CircleImageView imageView;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
+        }
     }
 } 

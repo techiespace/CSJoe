@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -21,30 +20,18 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class CourseFragment extends Fragment{
-    private FirestoreRecyclerAdapter sadapter;
+public class CourseFragment extends Fragment {
     Query quniversities;
     FirestoreRecyclerOptions<Course> response;
     String uni_name, course_name;
+    private FirestoreRecyclerAdapter sadapter;
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.name)
-        TextView textName;
-        @BindView(R.id.image)
-        CircleImageView imageView;
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-            ButterKnife.bind(this, itemView);
-        }
-    }
-
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         uni_name = getArguments().getString("University");
         course_name = getArguments().getString("Course");
         //Toast.makeText(getActivity(), ""+uni_name, Toast.LENGTH_SHORT).show();
         quniversities = FirebaseFirestore.getInstance()
-                .collection("university/"+uni_name+"/stream/"+course_name+"/courses");
+                .collection("university/" + uni_name + "/stream/" + course_name + "/courses");
         response = new FirestoreRecyclerOptions.Builder<Course>()
                 .setQuery(quniversities, Course.class)
                 .build();
@@ -63,32 +50,46 @@ public class CourseFragment extends Fragment{
                 holder.textName.setText(model.getCourse_name());
                 holder.itemView.setOnClickListener(view -> {
                     Bundle bundle = new Bundle();
-                    bundle.putString("University",uni_name);
-                    bundle.putString("Course",course_name);
-                    bundle.putString("Topic",snapshot.getId());
+                    bundle.putString("University", uni_name);
+                    bundle.putString("Course", course_name);
+                    bundle.putString("Topic", snapshot.getId());
                     Fragment sFragment = new TopicFragment();
                     sFragment.setArguments(bundle);
                     FragmentManager fragmentManager = getFragmentManager();
-                    fragmentManager.beginTransaction().replace(R.id.placeholder,sFragment).addToBackStack(null).commit();
+                    fragmentManager.beginTransaction().replace(R.id.placeholder, sFragment).addToBackStack(null).commit();
                 });
             }
         };
 
         View view = inflater.inflate(R.layout.fragment_list, container, false);
-        RecyclerView recyclerView =  (RecyclerView)view.findViewById(R.id.listRecyclerView);
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.listRecyclerView);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(sadapter);
         return view;
     }
+
     @Override
     public void onStart() {
         super.onStart();
         sadapter.startListening();
     }
+
     @Override
     public void onStop() {
         super.onStop();
         sadapter.stopListening();
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.name)
+        TextView textName;
+        @BindView(R.id.image)
+        CircleImageView imageView;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
+        }
     }
 } 

@@ -21,30 +21,18 @@ import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class TopicFragment extends Fragment {
-    private FirestoreRecyclerAdapter sadapter;
     Query quniversities;
     FirestoreRecyclerOptions<Topic> response;
     String uni_name, course_name, topic_name;
+    private FirestoreRecyclerAdapter sadapter;
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.name)
-        TextView textName;
-        @BindView(R.id.image)
-        CircleImageView imageView;
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-            ButterKnife.bind(this, itemView);
-        }
-    }
-
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         uni_name = getArguments().getString("University");
         course_name = getArguments().getString("Course");
         topic_name = getArguments().getString("Topic");
         //Toast.makeText(getActivity(), ""+uni_name, Toast.LENGTH_SHORT).show();
         quniversities = FirebaseFirestore.getInstance()
-                .collection("university/"+uni_name+"/stream/"+course_name+"/courses/"+topic_name+"/topic");
+                .collection("university/" + uni_name + "/stream/" + course_name + "/courses/" + topic_name + "/topic");
         response = new FirestoreRecyclerOptions.Builder<Topic>()
                 .setQuery(quniversities, Topic.class)
                 .build();
@@ -66,14 +54,14 @@ public class TopicFragment extends Fragment {
                     @Override
                     public void onClick(View view) {
                         Bundle bundle = new Bundle();
-                        bundle.putString("Course",course_name);
-                        bundle.putString("University",uni_name);
-                        bundle.putString("Topic",topic_name);
-                        bundle.putString("Subtopic",snapshot.getId());
+                        bundle.putString("Course", course_name);
+                        bundle.putString("University", uni_name);
+                        bundle.putString("Topic", topic_name);
+                        bundle.putString("Subtopic", snapshot.getId());
                         Fragment sFragment = new SubtopicFragment();
                         sFragment.setArguments(bundle);
                         FragmentManager fragmentManager = getFragmentManager();
-                        fragmentManager.beginTransaction().replace(R.id.placeholder,sFragment).addToBackStack(null).commit();
+                        fragmentManager.beginTransaction().replace(R.id.placeholder, sFragment).addToBackStack(null).commit();
                     }
                 });
             }
@@ -86,14 +74,28 @@ public class TopicFragment extends Fragment {
         recyclerView.setAdapter(sadapter);
         return view;
     }
+
     @Override
     public void onStart() {
         super.onStart();
         sadapter.startListening();
     }
+
     @Override
     public void onStop() {
         super.onStop();
         sadapter.stopListening();
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.name)
+        TextView textName;
+        @BindView(R.id.image)
+        CircleImageView imageView;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
+        }
     }
 } 

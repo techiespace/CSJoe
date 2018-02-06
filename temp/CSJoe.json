@@ -1,0 +1,601 @@
+{
+    "GUID": "bca58650-08d9-11e8-8016-7faf97cd5cba",
+    "lastModifTS": "2018-02-03T11:59:50.070Z",
+    "persistenceSchemaVersion": "1",
+    "description": "",
+    "comments": "",
+    "author": "",
+    "version": "",
+    "collections": [
+        {
+            "GUID": "a4bd40d0-08d6-11e8-8016-7faf97cd5cba",
+            "type": "object",
+            "description": "",
+            "comments": "",
+            "$schema": "",
+            "additionalProperties": false,
+            "properties": [
+                {
+                    "unit": "",
+                    "minimum": "",
+                    "exclusiveMinimum": false,
+                    "maximum": "",
+                    "exclusiveMaximum": false,
+                    "multipleOf": "",
+                    "divisibleBy": "",
+                    "default": "",
+                    "primaryKey": false,
+                    "relationshipType": "",
+                    "parentRelationship": "",
+                    "childRelationships": [],
+                    "foreignCollection": "",
+                    "foreignField": [],
+                    "enum": [],
+                    "mode": "",
+                    "sample": "",
+                    "childType": "number",
+                    "type": "numeric",
+                    "GUID": "f5ea1630-08d7-11e8-8016-7faf97cd5cba",
+                    "description": "",
+                    "comments": "",
+                    "dependencies": [],
+                    "required": false,
+                    "id": "",
+                    "name": "index"
+                },
+                {
+                    "minLength": "",
+                    "maxLength": "",
+                    "pattern": "",
+                    "default": "",
+                    "primaryKey": false,
+                    "relationshipType": "",
+                    "parentRelationship": "",
+                    "childRelationships": [],
+                    "foreignCollection": "",
+                    "foreignField": [],
+                    "enum": [],
+                    "sample": "",
+                    "type": "string",
+                    "GUID": "b7f2b400-08d6-11e8-8016-7faf97cd5cba",
+                    "description": "",
+                    "comments": "",
+                    "dependencies": [],
+                    "required": false,
+                    "id": "",
+                    "name": "type",
+                    "error": {
+                        "name": false
+                    }
+                },
+                {
+                    "minLength": "",
+                    "maxLength": "",
+                    "pattern": "",
+                    "default": "",
+                    "primaryKey": false,
+                    "relationshipType": "",
+                    "parentRelationship": "",
+                    "childRelationships": [],
+                    "foreignCollection": "",
+                    "foreignField": [],
+                    "enum": [],
+                    "sample": "",
+                    "type": "string",
+                    "GUID": "b561f700-08d6-11e8-8016-7faf97cd5cba",
+                    "description": "",
+                    "comments": "",
+                    "dependencies": [],
+                    "required": false,
+                    "id": "",
+                    "name": "link",
+                    "error": {
+                        "name": false
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "relationshipType": "",
+                    "parentRelationship": "",
+                    "childRelationships": [],
+                    "foreignCollection": "",
+                    "foreignField": [],
+                    "properties": [],
+                    "dependencies": [],
+                    "minProperties": "",
+                    "maxProperties": "",
+                    "additionalProperties": false,
+                    "enum": [],
+                    "childType": "object",
+                    "type": "document",
+                    "documentId": true,
+                    "containerLevelKey": true,
+                    "hasERDDivider": true,
+                    "GUID": "a4be0420-08d6-11e8-8016-7faf97cd5cba",
+                    "description": "",
+                    "comments": "",
+                    "required": true,
+                    "id": "",
+                    "name": "concept",
+                    "sampleName": "",
+                    "isPatternField": true,
+                    "error": {
+                        "name": false,
+                        "sampleName": true
+                    }
+                }
+            ],
+            "definitions": {
+                "type": "definitions",
+                "properties": [],
+                "GUID": "a4bddd10-08d6-11e8-8016-7faf97cd5cba"
+            },
+            "collectionName": "content",
+            "collectionUsers": [],
+            "collation": {},
+            "bucketId": "5442a470-08d5-11e8-8016-7faf97cd5cba",
+            "parentCollection": "7214a7e0-08d6-11e8-8016-7faf97cd5cba"
+        },
+        {
+            "GUID": "3f6e0ac0-08d6-11e8-8016-7faf97cd5cba",
+            "type": "object",
+            "description": "",
+            "comments": "",
+            "$schema": "",
+            "additionalProperties": false,
+            "properties": [
+                {
+                    "minLength": "",
+                    "maxLength": "",
+                    "pattern": "",
+                    "default": "",
+                    "primaryKey": true,
+                    "relationshipType": "",
+                    "parentRelationship": "",
+                    "childRelationships": [],
+                    "foreignCollection": "",
+                    "foreignField": [],
+                    "enum": [],
+                    "sample": "",
+                    "type": "string",
+                    "GUID": "3f6ef521-08d6-11e8-8016-7faf97cd5cba",
+                    "description": "",
+                    "comments": "",
+                    "dependencies": [],
+                    "required": true,
+                    "id": "",
+                    "name": "course_name",
+                    "isPatternField": true
+                }
+            ],
+            "definitions": {
+                "type": "definitions",
+                "properties": [],
+                "GUID": "3f6ef520-08d6-11e8-8016-7faf97cd5cba"
+            },
+            "collectionName": "courses",
+            "collectionUsers": [],
+            "collation": {},
+            "bucketId": "5442a470-08d5-11e8-8016-7faf97cd5cba",
+            "parentCollection": "1be3fd30-08d6-11e8-8016-7faf97cd5cba",
+            "childCollection": [
+                "60bd1c70-08d6-11e8-8016-7faf97cd5cba"
+            ]
+        },
+        {
+            "GUID": "1be3fd30-08d6-11e8-8016-7faf97cd5cba",
+            "type": "object",
+            "description": "",
+            "comments": "",
+            "$schema": "",
+            "additionalProperties": false,
+            "properties": [
+                {
+                    "minLength": "",
+                    "maxLength": "",
+                    "pattern": "",
+                    "default": "",
+                    "primaryKey": true,
+                    "relationshipType": "",
+                    "parentRelationship": "",
+                    "childRelationships": [],
+                    "foreignCollection": "",
+                    "foreignField": [],
+                    "enum": [],
+                    "sample": "",
+                    "type": "string",
+                    "GUID": "1be535b1-08d6-11e8-8016-7faf97cd5cba",
+                    "description": "",
+                    "comments": "",
+                    "dependencies": [],
+                    "required": true,
+                    "id": "",
+                    "name": "stream_name",
+                    "isPatternField": true,
+                    "error": {
+                        "name": false,
+                        "sampleName": true
+                    }
+                }
+            ],
+            "definitions": {
+                "type": "definitions",
+                "properties": [],
+                "GUID": "1be535b0-08d6-11e8-8016-7faf97cd5cba"
+            },
+            "collectionName": "stream",
+            "collectionUsers": [],
+            "collation": {},
+            "bucketId": "5442a470-08d5-11e8-8016-7faf97cd5cba",
+            "parentCollection": "9eb46980-08d5-11e8-8016-7faf97cd5cba",
+            "childCollection": [
+                "3f6e0ac0-08d6-11e8-8016-7faf97cd5cba"
+            ]
+        },
+        {
+            "GUID": "7214a7e0-08d6-11e8-8016-7faf97cd5cba",
+            "type": "object",
+            "description": "",
+            "comments": "",
+            "$schema": "",
+            "additionalProperties": false,
+            "properties": [
+                {
+                    "unit": "",
+                    "minimum": "",
+                    "exclusiveMinimum": false,
+                    "maximum": "",
+                    "exclusiveMaximum": false,
+                    "multipleOf": "",
+                    "divisibleBy": "",
+                    "default": "",
+                    "primaryKey": false,
+                    "relationshipType": "",
+                    "parentRelationship": "",
+                    "childRelationships": [],
+                    "foreignCollection": "",
+                    "foreignField": [],
+                    "enum": [],
+                    "mode": "",
+                    "sample": "",
+                    "childType": "number",
+                    "type": "numeric",
+                    "GUID": "eea8c970-08d7-11e8-8016-7faf97cd5cba",
+                    "description": "",
+                    "comments": "",
+                    "dependencies": [],
+                    "required": false,
+                    "id": "",
+                    "name": "index"
+                },
+                {
+                    "minLength": "",
+                    "maxLength": "",
+                    "pattern": "",
+                    "default": "",
+                    "primaryKey": true,
+                    "relationshipType": "",
+                    "parentRelationship": "",
+                    "childRelationships": [],
+                    "foreignCollection": "",
+                    "foreignField": [],
+                    "enum": [],
+                    "sample": "",
+                    "type": "string",
+                    "GUID": "72156b31-08d6-11e8-8016-7faf97cd5cba",
+                    "description": "",
+                    "comments": "",
+                    "dependencies": [],
+                    "required": true,
+                    "id": "",
+                    "name": "subtopic_name",
+                    "isPatternField": true
+                }
+            ],
+            "definitions": {
+                "type": "definitions",
+                "properties": [],
+                "GUID": "72156b30-08d6-11e8-8016-7faf97cd5cba"
+            },
+            "collectionName": "subtopic",
+            "collectionUsers": [],
+            "collation": {},
+            "bucketId": "5442a470-08d5-11e8-8016-7faf97cd5cba",
+            "parentCollection": "60bd1c70-08d6-11e8-8016-7faf97cd5cba",
+            "childCollection": [
+                "a4bd40d0-08d6-11e8-8016-7faf97cd5cba"
+            ]
+        },
+        {
+            "GUID": "60bd1c70-08d6-11e8-8016-7faf97cd5cba",
+            "type": "object",
+            "description": "",
+            "comments": "",
+            "$schema": "",
+            "additionalProperties": false,
+            "properties": [
+                {
+                    "unit": "",
+                    "minimum": "",
+                    "exclusiveMinimum": false,
+                    "maximum": "",
+                    "exclusiveMaximum": false,
+                    "multipleOf": "",
+                    "divisibleBy": "",
+                    "default": "",
+                    "primaryKey": false,
+                    "relationshipType": "",
+                    "parentRelationship": "",
+                    "childRelationships": [],
+                    "foreignCollection": "",
+                    "foreignField": [],
+                    "enum": [],
+                    "mode": "",
+                    "sample": "",
+                    "childType": "number",
+                    "type": "numeric",
+                    "GUID": "e3cc5490-08d7-11e8-8016-7faf97cd5cba",
+                    "description": "",
+                    "comments": "",
+                    "dependencies": [],
+                    "required": false,
+                    "id": "",
+                    "name": "index"
+                },
+                {
+                    "minLength": "",
+                    "maxLength": "",
+                    "pattern": "",
+                    "default": "",
+                    "primaryKey": true,
+                    "relationshipType": "",
+                    "parentRelationship": "",
+                    "childRelationships": [],
+                    "foreignCollection": "",
+                    "foreignField": [],
+                    "enum": [],
+                    "sample": "",
+                    "type": "string",
+                    "GUID": "60beca20-08d6-11e8-8016-7faf97cd5cba",
+                    "description": "",
+                    "comments": "",
+                    "dependencies": [],
+                    "required": true,
+                    "id": "",
+                    "name": "topic_name",
+                    "isPatternField": true
+                }
+            ],
+            "definitions": {
+                "type": "definitions",
+                "properties": [],
+                "GUID": "60bea310-08d6-11e8-8016-7faf97cd5cba"
+            },
+            "collectionName": "topic",
+            "collectionUsers": [],
+            "collation": {},
+            "bucketId": "5442a470-08d5-11e8-8016-7faf97cd5cba",
+            "parentCollection": "3f6e0ac0-08d6-11e8-8016-7faf97cd5cba",
+            "childCollection": [
+                "7214a7e0-08d6-11e8-8016-7faf97cd5cba"
+            ]
+        },
+        {
+            "GUID": "9eb46980-08d5-11e8-8016-7faf97cd5cba",
+            "type": "object",
+            "description": "",
+            "comments": "",
+            "$schema": "",
+            "additionalProperties": false,
+            "properties": [
+                {
+                    "minLength": "",
+                    "maxLength": "",
+                    "pattern": "",
+                    "default": "",
+                    "primaryKey": true,
+                    "relationshipType": "",
+                    "parentRelationship": "",
+                    "childRelationships": [],
+                    "foreignCollection": "",
+                    "foreignField": [],
+                    "enum": [],
+                    "sample": "",
+                    "type": "string",
+                    "GUID": "9eb81300-08d5-11e8-8016-7faf97cd5cba",
+                    "description": "",
+                    "comments": "",
+                    "dependencies": [],
+                    "required": true,
+                    "id": "",
+                    "name": "uniname",
+                    "isPatternField": true
+                }
+            ],
+            "definitions": {
+                "type": "definitions",
+                "properties": [],
+                "GUID": "9eb7ebf0-08d5-11e8-8016-7faf97cd5cba"
+            },
+            "collectionName": "university",
+            "collectionUsers": [],
+            "collation": {},
+            "bucketId": "5442a470-08d5-11e8-8016-7faf97cd5cba",
+            "childCollection": [
+                "1be3fd30-08d6-11e8-8016-7faf97cd5cba"
+            ]
+        }
+    ],
+    "buckets": [
+        {
+            "GUID": "5442a470-08d5-11e8-8016-7faf97cd5cba",
+            "name": "CSJoe",
+            "type": "bucket",
+            "description": "",
+            "comments": "",
+            "collectionIds": [
+                "9eb46980-08d5-11e8-8016-7faf97cd5cba",
+                "1be3fd30-08d6-11e8-8016-7faf97cd5cba",
+                "3f6e0ac0-08d6-11e8-8016-7faf97cd5cba",
+                "60bd1c70-08d6-11e8-8016-7faf97cd5cba",
+                "7214a7e0-08d6-11e8-8016-7faf97cd5cba",
+                "a4bd40d0-08d6-11e8-8016-7faf97cd5cba"
+            ],
+            "backgroundColor": {
+                "r": 0,
+                "g": 188,
+                "b": 213,
+                "a": 1
+            },
+            "show": true,
+            "indexes": [],
+            "documentIdName": "^[a-zA-Z0-9_.-]{20}$",
+            "documentIdType": "object"
+        }
+    ],
+    "views": [],
+    "relationships": [],
+    "users": [],
+    "idToNameHashTable": {
+        "5442a470-08d5-11e8-8016-7faf97cd5cba": "CSJoe",
+        "9eb81300-08d5-11e8-8016-7faf97cd5cba": "uniname",
+        "9eb46980-08d5-11e8-8016-7faf97cd5cba": "university",
+        "1be535b1-08d6-11e8-8016-7faf97cd5cba": "stream_name",
+        "1be3fd30-08d6-11e8-8016-7faf97cd5cba": "stream",
+        "3f6ef521-08d6-11e8-8016-7faf97cd5cba": "course_name",
+        "3f6e0ac0-08d6-11e8-8016-7faf97cd5cba": "courses",
+        "60beca20-08d6-11e8-8016-7faf97cd5cba": "topic_name",
+        "60bd1c70-08d6-11e8-8016-7faf97cd5cba": "topic",
+        "72156b31-08d6-11e8-8016-7faf97cd5cba": "subtopic_name",
+        "7214a7e0-08d6-11e8-8016-7faf97cd5cba": "subtopic",
+        "a4be0420-08d6-11e8-8016-7faf97cd5cba": "concept",
+        "a4bd40d0-08d6-11e8-8016-7faf97cd5cba": "content",
+        "b561f700-08d6-11e8-8016-7faf97cd5cba": "link",
+        "b7f2b400-08d6-11e8-8016-7faf97cd5cba": "type",
+        "e3cc5490-08d7-11e8-8016-7faf97cd5cba": "index",
+        "eea8c970-08d7-11e8-8016-7faf97cd5cba": "index",
+        "f5ea1630-08d7-11e8-8016-7faf97cd5cba": "index"
+    },
+    "definitions": {
+        "type": "definitions",
+        "properties": [],
+        "GUID": "352259a1-08d5-11e8-8016-7faf97cd5cba"
+    },
+    "externalDefinitions": {
+        "type": "externalDefinitions",
+        "properties": [],
+        "GUID": "352259a2-08d5-11e8-8016-7faf97cd5cba"
+    },
+    "modelName": "CSJoe",
+    "dbVersion": "",
+    "dbVendor": "Cloud Firestore",
+    "appTarget": "FIRESTORE",
+    "creationTS": "2018-02-03T11:27:24.730Z",
+    "projectName": "CC",
+    "hideForeignMaster": false,
+    "isCreatedByPlugin": true,
+    "pluginInformation": {
+        "pluginVersion": "0.1.0",
+        "pluginName": "Firestore",
+        "pluginEngineVersion": "1.0.0"
+    },
+    "settings": {
+        "centralPane": {
+            "dbLevel": {
+                "erd": [
+                    {
+                        "GUID": "9eb46980-08d5-11e8-8016-7faf97cd5cba",
+                        "x": 87,
+                        "y": 110,
+                        "width": 204,
+                        "height": 44,
+                        "color": {}
+                    },
+                    {
+                        "GUID": "1be3fd30-08d6-11e8-8016-7faf97cd5cba",
+                        "x": 83.5,
+                        "y": 184,
+                        "width": 211,
+                        "height": 44,
+                        "color": {}
+                    },
+                    {
+                        "GUID": "3f6e0ac0-08d6-11e8-8016-7faf97cd5cba",
+                        "x": 84.5,
+                        "y": 258,
+                        "width": 209,
+                        "height": 44,
+                        "color": {
+                            "hsl": {
+                                "h": 206.57142857142858,
+                                "s": 0.8974358974358974,
+                                "l": 0.5411764705882353,
+                                "a": 1
+                            },
+                            "hex": "#2196f3",
+                            "rgb": {
+                                "r": 33,
+                                "g": 150,
+                                "b": 243,
+                                "a": 1
+                            },
+                            "hsv": {
+                                "h": 206.57142857142858,
+                                "s": 0.8641975308641976,
+                                "v": 0.9529411764705882,
+                                "a": 1
+                            },
+                            "oldHue": 339.7058823529412,
+                            "source": "hex"
+                        }
+                    },
+                    {
+                        "GUID": "60bd1c70-08d6-11e8-8016-7faf97cd5cba",
+                        "x": 87,
+                        "y": 332,
+                        "width": 204,
+                        "height": 58,
+                        "color": {}
+                    },
+                    {
+                        "GUID": "7214a7e0-08d6-11e8-8016-7faf97cd5cba",
+                        "x": 79.5,
+                        "y": 420,
+                        "width": 219,
+                        "height": 58,
+                        "color": {}
+                    },
+                    {
+                        "GUID": "a4bd40d0-08d6-11e8-8016-7faf97cd5cba",
+                        "x": 87,
+                        "y": 508,
+                        "width": 204,
+                        "height": 86,
+                        "color": {}
+                    }
+                ],
+                "buckets": [
+                    {
+                        "x": 39.5,
+                        "y": 40,
+                        "GUID": "5442a470-08d5-11e8-8016-7faf97cd5cba"
+                    }
+                ],
+                "collapsedNodes": [],
+                "activeRelationship": "",
+                "activeRelationshipFields": {
+                    "childField": [],
+                    "parentField": []
+                },
+                "selectedCollections": [],
+                "displayColorPicker": false
+            },
+            "collectionLevel": {},
+            "changed": false
+        },
+        "dtDiagram": {
+            "collapsedNodes": [],
+            "details": true
+        }
+    }
+}

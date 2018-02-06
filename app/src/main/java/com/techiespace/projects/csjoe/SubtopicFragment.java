@@ -20,32 +20,20 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class SubtopicFragment extends Fragment{
-    private FirestoreRecyclerAdapter sadapter;
+public class SubtopicFragment extends Fragment {
     Query quniversities;
     FirestoreRecyclerOptions<Subtopic> response;
     String uni_name, course_name, topic_name, subtopic_name;
+    private FirestoreRecyclerAdapter sadapter;
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.name)
-        TextView textName;
-        @BindView(R.id.image)
-        CircleImageView imageView;
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-            ButterKnife.bind(this, itemView);
-        }
-    }
-
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         uni_name = getArguments().getString("University");
         course_name = getArguments().getString("Course");
         topic_name = getArguments().getString("Topic");
         subtopic_name = getArguments().getString("Subtopic");
         //Toast.makeText(getActivity(), ""+uni_name, Toast.LENGTH_SHORT).show();
         quniversities = FirebaseFirestore.getInstance()
-                .collection("university/"+uni_name+"/stream/"+course_name+"/courses/"+topic_name+"/topic/"+subtopic_name+"/subtopic");
+                .collection("university/" + uni_name + "/stream/" + course_name + "/courses/" + topic_name + "/topic/" + subtopic_name + "/subtopic");
         response = new FirestoreRecyclerOptions.Builder<Subtopic>()
                 .setQuery(quniversities, Subtopic.class)
                 .build();
@@ -59,7 +47,7 @@ public class SubtopicFragment extends Fragment{
 
             @Override
             protected void onBindViewHolder(SubtopicFragment.ViewHolder holder, int position, Subtopic model) {
-            DocumentSnapshot snapshot = getSnapshots().getSnapshot(holder.getAdapterPosition());
+                DocumentSnapshot snapshot = getSnapshots().getSnapshot(holder.getAdapterPosition());
                 //progressBar.setVisibility(View.GONE);
                 holder.textName.setText(model.getSubtopic_name());
                 //Toast.makeText(getActivity(), "onBindViewHolder: ...."+model.getSubtopic_name(), Toast.LENGTH_SHORT).show();
@@ -67,15 +55,15 @@ public class SubtopicFragment extends Fragment{
                     @Override
                     public void onClick(View view) {
                         Bundle bundle = new Bundle();
-                        bundle.putString("Course",course_name);
-                        bundle.putString("University",uni_name);
-                        bundle.putString("Topic",topic_name);
-                        bundle.putString("Subtopic",subtopic_name);
-                        bundle.putString("Content",snapshot.getId());
+                        bundle.putString("Course", course_name);
+                        bundle.putString("University", uni_name);
+                        bundle.putString("Topic", topic_name);
+                        bundle.putString("Subtopic", subtopic_name);
+                        bundle.putString("Content", snapshot.getId());
                         Fragment sFragment = new ContentFragment();
                         sFragment.setArguments(bundle);
                         FragmentManager fragmentManager = getFragmentManager();
-                        fragmentManager.beginTransaction().replace(R.id.placeholder,sFragment).addToBackStack(null).commit();
+                        fragmentManager.beginTransaction().replace(R.id.placeholder, sFragment).addToBackStack(null).commit();
                     }
                 });
             }
@@ -88,14 +76,28 @@ public class SubtopicFragment extends Fragment{
         recyclerView.setAdapter(sadapter);
         return view;
     }
+
     @Override
     public void onStart() {
         super.onStart();
         sadapter.startListening();
     }
+
     @Override
     public void onStop() {
         super.onStop();
         sadapter.stopListening();
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.name)
+        TextView textName;
+        @BindView(R.id.image)
+        CircleImageView imageView;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
+        }
     }
 } 

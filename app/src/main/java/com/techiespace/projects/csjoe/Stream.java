@@ -9,8 +9,10 @@ public class Stream {
     private String stream_name;
     private String course_count;
 
-    public Stream() {}
-    public Stream(String name,String count){
+    public Stream() {
+    }
+
+    public Stream(String name, String count) {
         course_count = count;
         stream_name = name;
     }
