@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MainActivity">
+
+        <item
+            app:showAsAction="withText"
+            android:id="@+id/github"
+            android:icon="@drawable/github64px"
+            android:title="GitHub" />
+
+</menu>
+
